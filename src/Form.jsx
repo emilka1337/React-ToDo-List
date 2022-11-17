@@ -9,7 +9,7 @@ export default function Form(props) {
 
     function onFormSubmit(e) {
         e.preventDefault()
-        if (inputState.trim() > 0) {
+        if (inputState.trim().length > 0) {
             props.onSubmit({text: inputState, completed: false})
             setInputState("")
         }
