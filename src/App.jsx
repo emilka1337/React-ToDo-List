@@ -4,8 +4,9 @@ import Form from './Form'
 import TodoItem from './TodoItem'
 
 export default function App() {
+	let defaultDarkTheme = window.matchMedia("'(prefers-color-scheme: dark)'").matches
+	const [darkMode, setDarkMode] = useState(localStorage.getItem("reactTodosDarkMode") == "true" ? true : defaultDarkTheme);
 	const [TODOS, setTodos] = useState(JSON.parse(localStorage.getItem("reactTodos")) ?? [])
-	const [darkMode, setDarkMode] = useState(localStorage.getItem("reactTodosDarkMode") == "true" ? true : false);
 
 	useEffect(() => {
 		localStorage.setItem("reactTodos", JSON.stringify(TODOS))
