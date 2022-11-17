@@ -9,8 +9,10 @@ export default function Form(props) {
 
     function onFormSubmit(e) {
         e.preventDefault()
-        props.onSubmit({text: inputState, completed: false})
-        setInputState("")
+        if (inputState.trim() > 0) {
+            props.onSubmit({text: inputState, completed: false})
+            setInputState("")
+        }
     }
 
     return (
