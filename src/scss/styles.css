@@ -1,23 +1,57 @@
+@charset "UTF-8";
 body {
   min-height: 100vh;
 }
 
-#root {
+.app {
   background: crimson;
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: 300ms;
+}
+.app .dark-mode-toggler {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+.app.dark {
+  background: #343434;
+}
+.app.dark main {
+  background: #222;
+  color: #ececec;
+}
+.app.dark main .todo-list-item .checkbox {
+  border: 1px solid #ececec !important;
+}
+.app.dark main .todo-list-item .checkbox::after {
+  left: 2px;
+  top: -6px !important;
+}
+.app.dark main .todo-list-item p::after {
+  background: #ececec;
+}
+.app.dark main .todo-list-item button svg {
+  fill: #ececec;
 }
 
 main {
   width: 30%;
-  background: #fff;
+  background: rgb(250, 250, 250);
   padding: 40px;
   border-radius: 20px;
+  transition: 300ms;
 }
 main h3 {
   text-align: center;
+  margin-bottom: 30px;
+}
+@media screen and (max-width: 992px) {
+  main {
+    width: 90%;
+  }
 }
 main form {
   display: flex;
@@ -40,13 +74,61 @@ main .todo-list .todo-list-item {
   cursor: pointer;
 }
 main .todo-list .todo-list-item.completed p {
-  text-decoration: line-through;
+  position: relative;
+}
+main .todo-list .todo-list-item.completed p::after {
+  width: 110%;
+}
+main .todo-list .todo-list-item .list-item-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  max-width: 80%;
+}
+main .todo-list .todo-list-item .list-item-left .checkbox {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #000;
+  border-radius: 3px;
+}
+main .todo-list .todo-list-item .list-item-left .checkbox.checked {
+  background: crimson;
+}
+main .todo-list .todo-list-item .list-item-left .checkbox.checked::after {
+  content: "✓";
+  font-size: 20px;
+  position: relative;
+  top: -8px;
+  color: #fff;
 }
 main .todo-list .todo-list-item p {
   font-weight: 500;
   margin-bottom: 0;
+  position: relative;
+  word-wrap: break-word;
+  max-width: 80%;
+}
+main .todo-list .todo-list-item p::first-letter {
+  text-transform: uppercase;
+}
+main .todo-list .todo-list-item p::after {
+  content: "";
+  width: 0;
+  height: 2px;
+  background: #222;
+  display: inline-block;
+  position: absolute;
+  left: -5%;
+  top: 13px;
+  transition: 300ms;
 }
 main .todo-list .todo-list-item button {
   border: none;
   background: transparent;
+  z-index: 100;
+  color: crimson;
+}
+main .todo-list .todo-list-item button svg {
+  width: 16px;
 }/*# sourceMappingURL=styles.css.map */

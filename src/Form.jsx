@@ -1,16 +1,16 @@
 import { useState } from 'react'
 
 export default function Form(props) {
-    const [inputState, setInputState] = useState("");
+    const [inputState, setInputState] = useState("")
 
     function onInputChange(e) {
-        setInputState(e.target.value);
+        setInputState(e.target.value)
     }
 
     function onFormSubmit(e) {
-        e.preventDefault();
-        props.onSubmit({text: inputState, completed: false});
-        setInputState("");
+        e.preventDefault()
+        props.onSubmit({text: inputState, completed: false})
+        setInputState("")
     }
 
     return (

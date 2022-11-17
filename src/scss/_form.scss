@@ -1,0 +1,9 @@
+form {
+    display: flex;
+    gap: 5px;
+
+    button {
+        background: $accentColor !important;
+        color: #fff !important;
+    }
+}

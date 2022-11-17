@@ -1,0 +1,33 @@
+.dark-mode-toggler {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+&.dark {
+    background: #343434;
+
+    main {
+        background: #222;
+        color: $darkModeFontColor;
+
+        .todo-list-item {
+            .checkbox {
+                border: 1px solid $darkModeFontColor !important;
+
+                &::after {
+                    left: 2px;
+                    top: -6px !important;
+                }
+            }
+
+            p::after {
+                background: $darkModeFontColor;
+            }
+
+            button svg {
+                fill: $darkModeFontColor;
+            }
+        }
+    }
+}
