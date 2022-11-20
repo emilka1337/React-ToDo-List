@@ -1,46 +1,67 @@
 import { useEffect, useState } from 'react'
 import DarkModeToggler from './DarkModeToggler'
-import Form from './Form'
-import TodoItem from './TodoItem'
+import TodoCard from './TodoCard'
+import NewTodoCardButtonForm from './new-todo-card/NewTodoCardButtonForm'
+
+const fakeTodoCards = [
+	{
+		name: "Покупки",
+		color: "magenta",
+		todoList: [
+			[{ "text": "Сходить за хлебом", "completed": false },
+			{ "text": "Запастить молоком", "completed": false },
+			{ "text": "Купить сыр", "completed": false },
+			{ "text": "Съесть хомяка", "completed": false }]
+		]
+	},
+	{
+		name: "Домашка",
+		color: "crimson",
+		todoList: [
+			[{ "text": "Сходить за хлебом", "completed": false },
+			{ "text": "Запастить молоком", "completed": false },
+			{ "text": "Купить сыр", "completed": false },
+			{ "text": "Съесть хомяка", "completed": false }]
+		]
+	},
+]
 
 export default function App() {
-	let defaultDarkTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
-	console.log(defaultDarkTheme);
-	const [darkMode, setDarkMode] = useState(localStorage.getItem("reactTodosDarkMode") == "true" ? true : defaultDarkTheme);
-	const [TODOS, setTodos] = useState(JSON.parse(localStorage.getItem("reactTodos")) ?? [])
+	const [darkMode, setDarkMode] = useState(setDarkThemeOnStart());
+	const [todoCards, setTodoCards] = useState(JSON.parse(localStorage.getItem("reactTodos")) ?? []);
 
-	useEffect(() => {
-		localStorage.setItem("reactTodos", JSON.stringify(TODOS))
-	});
+	// useEffect(() => {
+	// 	localStorage.setItem("reactTodos", JSON.stringify(todoCards))
+	// });
 
-	function onTodoAdded(todo) {
-		setTodos([...TODOS, todo])
+	function setDarkThemeOnStart() {
+		let defaultDarkTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
+		return localStorage.getItem("reactTodosDarkMode") == "true" ? true : defaultDarkTheme
 	}
 
-	function onTodoDelete(index) {
-		let clone = [...TODOS]
-		clone.splice(index, 1)
-		setTodos(clone)
-	}
-
-	function onTodoComplete(index) {
-		let clone = [...TODOS]
-		clone[index].completed = !clone[index].completed
-		setTodos(clone)
+	function onNewTodoCardSubmit(formData) {
+		console.log(formData)
+		setTodoCards([...todoCards, formData])
 	}
 
 	return (
 		<div className={darkMode ? "app dark" : "app"}>
-			<DarkModeToggler currentMode={darkMode} onClick={setDarkMode} text={darkMode ? "Dark" : "Light"}/>
+			<header>
+				<NewTodoCardButtonForm onSubmit={onNewTodoCardSubmit} />
+				<DarkModeToggler currentMode={darkMode} onClick={setDarkMode} text={darkMode ? "Dark" : "Light"} />
+			</header>
 			<main>
-				<h3>Todo</h3>
-				<Form onSubmit={onTodoAdded} />
-				<ul className='todo-list'>
-					{TODOS.map((todo, index) => {
-						return <TodoItem text={todo.text} key={index} index={index}
-							onTodoDelete={onTodoDelete} onTodoComplete={onTodoComplete} completed={todo.completed} />
-					})}
-				</ul>
+				{
+					todoCards.map((todoCard, index) => {
+						return <TodoCard
+							name={todoCard.name}
+							color={todoCard.color}
+							todoList={todoCard.todoList}
+							key={index}
+							index={index}
+						/>
+					})
+				}
 			</main>
 		</div>
 	)
