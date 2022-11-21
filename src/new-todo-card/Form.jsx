@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect, useRef } from "react";
 import { TodosContext } from "../App"
 
 class Card {
@@ -15,6 +15,10 @@ export default function Form(props) {
     const [newCardColor, setNewCardColor] = useState("#343434");
 
     const [todoCards, setAndSaveTodoCards] = useContext(TodosContext)
+
+    const newCardNameInput = useRef()
+
+    useEffect(() => newCardNameInput.current.focus(), [])
 
     function onCardNameChange(e) {
         setNewCardName(e.target.value)
@@ -39,7 +43,7 @@ export default function Form(props) {
     return (
         <form className="new-todo-card-form" onSubmit={onFormSubmit}>
             <label htmlFor="new-todo-card-name">Name:</label>
-            <input type="text" id="new-todo-card-name" value={newCardName} onChange={onCardNameChange} />
+            <input type="text" id="new-todo-card-name" ref={newCardNameInput} value={newCardName} onChange={onCardNameChange} />
             <label htmlFor="new-todo-card-color">Color:</label>
             <input type="color" id="new-todo-card-color" value={newCardColor} onChange={onCardColorChange} />
             <button className="btn">
