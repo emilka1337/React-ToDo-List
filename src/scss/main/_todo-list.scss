@@ -56,9 +56,9 @@
             word-wrap: break-word;
             max-width: 80%;
 
-            &::first-letter {
-                text-transform: uppercase;
-            }
+            // &::first-letter {
+            //     text-transform: uppercase;
+            // }
 
             &::after {
                 content: "";

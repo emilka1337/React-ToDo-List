@@ -14,7 +14,7 @@ export default function TodoCard(props) {
 
     function onTodoDelete(index) {
         let clone = [...todoCards];
-        clone[index].todoList.splice(index, 1)
+        clone[props.index].todoList.splice(index, 1)
         setAndSaveTodoCards(clone);
     }
 
