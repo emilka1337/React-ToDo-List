@@ -14,6 +14,11 @@ main {
         }
     }
 
+    h1 {
+        color: #bdbdbd;
+        user-select: none;
+    }
+
     .todo-card {
         width: 30%;
         background: rgb(250, 250, 250);
@@ -23,10 +28,29 @@ main {
         transition: 300ms;
         margin-bottom: 20px;
         color: $lightModeFontColor;
+        position: relative;
 
         h3 {
             text-align: center;
             margin-bottom: 30px;
+        }
+
+        .remove-card {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            
+            &:hover {
+                svg {
+                    fill: $accentColor;
+                }
+            }
+
+            svg {    
+                width: 20px;
+                fill: $lightModeFontColor;
+                transition: 200ms;
+            } 
         }
 
         @media screen and (max-width:992px) {

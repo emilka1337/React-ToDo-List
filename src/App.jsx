@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import DarkModeToggler from './DarkModeToggler'
-import TodoCard from './TodoCard'
+import TodoCard from './todo-card/TodoCard'
 import NewTodoCardButtonForm from './new-todo-card/NewTodoCardButtonForm'
 
 export const TodosContext = React.createContext();
@@ -15,7 +15,7 @@ export function App() {
 
 	function setDarkThemeOnStart() {
 		let defaultDarkTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
-		
+
 		if (localStorage.getItem("reactTodosDarkMode")) {
 			if (localStorage.getItem("reactTodosDarkMode") == "true") return true
 			else return false
@@ -36,6 +36,7 @@ export function App() {
 				</header>
 				<main>
 					{
+						todoCards.length == 0 ? <h1>Click "+" to add new list</h1> :
 						todoCards.map((todoCard, index) => {
 							return <TodoCard
 								name={todoCard.name}

@@ -1,6 +1,7 @@
 import { useContext } from 'react'
-import { TodosContext } from './App'
-import Form from './Form'
+import { TodosContext } from '../App'
+import RemoveCard from './RemoveCard'
+import Form from '../Form'
 import TodoItem from './TodoItem'
 
 export default function TodoCard(props) {
@@ -24,8 +25,15 @@ export default function TodoCard(props) {
         setAndSaveTodoCards(clone);
     }
 
+    function onCardRemove() {
+        let clone = [...todoCards]
+        clone.splice(props.index, 1)
+        setAndSaveTodoCards(clone)
+    }
+
     return (
         <div className="todo-card" /*style={{background: props.color}}*/>
+            <RemoveCard onClick={onCardRemove} />
             <h3>{props.name}</h3>
             <Form onSubmit={onTodoAdded} />
             <ul className='todo-list'>
