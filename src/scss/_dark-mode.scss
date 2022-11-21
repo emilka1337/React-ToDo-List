@@ -17,6 +17,10 @@
                 }
             }
 
+            .edit-name svg {
+                fill: $darkModeFontColor !important;
+            }
+
             .todo-list-item {
                 .checkbox {
                     border: 1px solid $darkModeFontColor !important;

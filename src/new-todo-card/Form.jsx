@@ -30,7 +30,7 @@ export default function Form(props) {
 
     function onFormSubmit(e) {
         e.preventDefault()
-        setAndSaveTodoCards([...todoCards, new Card(newCardName, newCardColor)])
+        setAndSaveTodoCards([...todoCards, new Card(newCardName || "Enter a name...", newCardColor)])
         setNewCardName("")
         setNewCardColor("#343434")
         props.onSubmit()

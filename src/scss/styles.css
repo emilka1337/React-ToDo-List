@@ -22,6 +22,9 @@ body {
 .app.dark main .todo-card .remove-card svg {
   fill: #ececec;
 }
+.app.dark main .todo-card .edit-name svg {
+  fill: #ececec !important;
+}
 .app.dark main .todo-card .todo-list-item .checkbox {
   border: 1px solid #ececec !important;
 }
@@ -144,26 +147,17 @@ main .todo-card {
   color: #222;
   position: relative;
 }
+main .todo-card:hover .edit-name {
+  opacity: 1;
+}
 main .todo-card h3 {
   text-align: center;
   margin-bottom: 30px;
   position: relative;
+  width: 100%;
 }
 main .todo-card h3:hover .edit-name {
   opacity: 1;
-}
-main .todo-card h3 .edit-name {
-  display: flex;
-  align-items: center;
-  position: absolute;
-  right: -15px;
-  top: 4px;
-  opacity: 0;
-  transition: 200ms;
-}
-main .todo-card h3 .edit-name svg {
-  width: 16px;
-  fill: #ececec;
 }
 main .todo-card .card-name-edit-form {
   margin-bottom: 20px;
@@ -185,6 +179,17 @@ main .todo-card .remove-card svg {
   width: 20px;
   fill: #222;
   transition: 200ms;
+}
+main .todo-card .edit-name {
+  position: absolute;
+  right: 6px;
+  top: 38px;
+  opacity: 0;
+  transition: 200ms;
+}
+main .todo-card .edit-name svg {
+  width: 16px;
+  fill: #222;
 }
 @media screen and (max-width: 992px) {
   main .todo-card {

@@ -1,10 +1,10 @@
 import { useContext, useState } from "react";
 import { TodosContext } from "../App";
 import RemoveCard from "./RemoveCard";
-import Form from "../Form";
-import TodoItem from "./TodoItem";
+import NewTodoItemForm from "./NewTodoItemForm";
 import CardNameEditForm from "./CardNameEditForm";
-import CardName from "./CardName";
+import TodoList from "./TodoList";
+import EditCardName from "./EditName";
 
 export default function TodoCard(props) {
     const [todoCards, setAndSaveTodoCards] = useContext(TodosContext);
@@ -14,19 +14,6 @@ export default function TodoCard(props) {
     function onTodoAdded(todo) {
         let clone = [...todoCards];
         clone[props.index].todoList.push(todo);
-        setAndSaveTodoCards(clone);
-    }
-
-    function onTodoDelete(index) {
-        let clone = [...todoCards];
-        clone[props.index].todoList.splice(index, 1);
-        setAndSaveTodoCards(clone);
-    }
-
-    function onTodoComplete(index) {
-        let clone = [...todoCards];
-        clone[props.index].todoList[index].completed =
-            !clone[props.index].todoList[index].completed;
         setAndSaveTodoCards(clone);
     }
 
@@ -57,6 +44,7 @@ export default function TodoCard(props) {
     return (
         <div className="todo-card" /*style={{background: props.color}}*/>
             <RemoveCard onClick={onCardRemove} />
+            <EditCardName onClick={onCardRenameButtonClicked} />
             {nameEditMode ? (
                 <CardNameEditForm
                     currentCardName={props.name}
@@ -64,26 +52,10 @@ export default function TodoCard(props) {
                     onCancel={onCardRenameFormCancelled}
                 />
             ) : (
-                <CardName
-                    name={props.name}
-                    onCardRenameButtonClicked={onCardRenameButtonClicked}
-                />
+                <h3>{props.name}</h3>
             )}
-            <Form onSubmit={onTodoAdded} />
-            <ul className="todo-list">
-                {todoCards[props.index].todoList.map((todo, index) => {
-                    return (
-                        <TodoItem
-                            text={todo.text}
-                            key={index}
-                            index={index}
-                            onTodoDelete={onTodoDelete}
-                            onTodoComplete={onTodoComplete}
-                            completed={todo.completed}
-                        />
-                    );
-                })}
-            </ul>
+            <NewTodoItemForm onSubmit={onTodoAdded} />
+            <TodoList index={props.index} />
         </div>
     );
 }

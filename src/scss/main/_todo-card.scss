@@ -9,29 +9,21 @@
     color: $lightModeFontColor;
     position: relative;
 
+    &:hover .edit-name {
+        opacity: 1;
+    }
+
     h3 {
         text-align: center;
         margin-bottom: 30px;
 		position: relative;
+        width: 100%;
 
 		&:hover .edit-name {
 			opacity: 1;
 		}
 
-        .edit-name {
-            display: flex;
-            align-items: center;
-			position: absolute;
-			right: -15px;
-			top: 4px;
-			opacity: 0;
-			transition: 200ms;
-
-            svg {
-                width: 16px;
-                fill: $darkModeFontColor;
-            }
-        }
+        
     }
 
     .card-name-edit-form {
@@ -63,6 +55,19 @@
             transition: 200ms;
         }
     }
+
+    .edit-name {
+			position: absolute;
+			right: 6px;
+			top: 38px;
+			opacity: 0;
+			transition: 200ms;
+
+            svg {
+                width: 16px;
+                fill: $lightModeFontColor;
+            }
+        }
 
     @media screen and (max-width: 992px) {
         width: 90%;
