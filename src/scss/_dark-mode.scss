@@ -1,10 +1,15 @@
 &.dark {
     background: #343434;
 
+    header form {
+        color: $darkModeFontColor;
+    }
+
     main {
         .todo-card {
             background: #222;
-            color: $darkModeFontColor;
+            color: $darkModeFontColor !important;
+            box-shadow: none;
 
             .todo-list-item {
                 .checkbox {

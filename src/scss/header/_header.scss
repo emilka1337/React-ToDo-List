@@ -14,11 +14,27 @@ header {
         margin-right: 10px;
     }
 
+    .toggle-new-todo-card-form {
+        background: $accentColor;
+        color: $darkModeFontColor;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &:hover {
+            background: $accentColor;
+        }
+
+        svg {
+            width: 20px;
+        }
+    }
+
     .new-todo-card-form {
         display: flex;
         align-items: center;
         gap: 20px;
-        color: #fff;
+        color: $lightModeFontColor;
 
         label {
             font-size: 18px;
@@ -27,6 +43,12 @@ header {
         button {
             display: flex;
             align-items: center;
+            background: $accentColor;
+            color: $darkModeFontColor;
+
+            &:hover {
+                background: $accentColor;
+            }
 
             p {
                 margin: 0;

@@ -1,24 +1,27 @@
-import { useState } from 'react'
+import { useContext } from 'react'
+import { TodosContext } from './App'
 import Form from './Form'
 import TodoItem from './TodoItem'
 
 export default function TodoCard(props) {
-    const [todos, setTodos] = useState([])
+    const [todoCards, setAndSaveTodoCards] = useContext(TodosContext)
 
     function onTodoAdded(todo) {
-        setTodos([...todos, todo])
+        let clone = [...todoCards];
+        clone[props.index].todoList.push(todo);
+        setAndSaveTodoCards(clone);
     }
 
     function onTodoDelete(index) {
-        let clone = [...todos]
-        clone.splice(index, 1)
-        setTodos(clone)
+        let clone = [...todoCards];
+        clone[index].todoList.splice(index, 1)
+        setAndSaveTodoCards(clone);
     }
 
     function onTodoComplete(index) {
-        let clone = [...todos]
-        clone[index].completed = !clone[index].completed
-        setTodos(clone)
+        let clone = [...todoCards];
+        clone[props.index].todoList[index].completed = !clone[props.index].todoList[index].completed;
+        setAndSaveTodoCards(clone);
     }
 
     return (
@@ -26,7 +29,7 @@ export default function TodoCard(props) {
             <h3>{props.name}</h3>
             <Form onSubmit={onTodoAdded} />
             <ul className='todo-list'>
-                {todos.map((todo, index) => {
+                {todoCards[props.index].todoList.map((todo, index) => {
                     return <TodoItem text={todo.text} key={index} index={index}
                         onTodoDelete={onTodoDelete} onTodoComplete={onTodoComplete} completed={todo.completed} />
                 })}
