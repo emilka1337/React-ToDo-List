@@ -11,6 +11,12 @@
             color: $darkModeFontColor !important;
             box-shadow: none;
 
+            .remove-card {
+                svg {
+                    fill: $darkModeFontColor;
+                }
+            }
+
             .todo-list-item {
                 .checkbox {
                     border: 1px solid $darkModeFontColor !important;
