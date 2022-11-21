@@ -36,7 +36,8 @@ export function App() {
 				</header>
 				<main>
 					{
-						todoCards.length == 0 ? <h1>Click "+" to add new list</h1> :
+						todoCards.length == 0 ? 
+						<h1>Click "+" to add new list</h1> :
 						todoCards.map((todoCard, index) => {
 							return <TodoCard
 								name={todoCard.name}
