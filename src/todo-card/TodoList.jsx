@@ -1,9 +1,10 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { TodosContext } from "../App";
 import TodoItem from "./TodoItem";
 
 export default function TodoList(props) {
     const [todoCards, setAndSaveTodoCards] = useContext(TodosContext);
+    const [focusedItem, setFocusedItem] = useState()
 
     function onTodoDelete(index) {
         let clone = [...todoCards];
@@ -18,6 +19,14 @@ export default function TodoList(props) {
         setAndSaveTodoCards(clone);
     }
 
+    function setFocus(index) {
+        setFocusedItem(index)
+    }
+
+    function removeFocus() {
+        setFocusedItem(null)
+    }
+
     return (
         <ul className="todo-list">
             {todoCards[props.index].todoList.map((todo, index) => {
@@ -29,6 +38,9 @@ export default function TodoList(props) {
                         completed={todo.completed}
                         onTodoDelete={onTodoDelete}
                         onTodoComplete={onTodoComplete}
+                        onFocus={setFocus}
+                        onBlur={removeFocus}
+                        focused={index == focusedItem}
                     />
                 );
             })}

@@ -1,16 +1,33 @@
 export default function TodoItem(props) {
+    let liClassName = "todo-list-item";
+    props.completed ? (liClassName = liClassName + " completed") : null;
+    props.focused ? (liClassName = liClassName + " focused") : null;
+    let checkboxClassName = props.completed ? "checkbox checked" : "checkbox";
+
     function onTodoDelete() {
-        props.onTodoDelete(props.index)
+        props.onTodoDelete(props.index);
     }
 
     function onTodoComplete() {
-        props.onTodoComplete(props.index)
+        props.onTodoComplete(props.index);
+    }
+
+    function setFocus() {
+        props.onFocus(props.index);
+    }
+
+    function removeFocus() {
+        props.onBlur();
     }
 
     return (
-        <li className={props.completed ? 'todo-list-item completed' : 'todo-list-item'}>
+        <li
+            className={liClassName}
+            onMouseOver={setFocus}
+            onMouseOut={removeFocus}
+        >
             <div className="list-item-left" onClick={onTodoComplete}>
-                <div className={props.completed ? "checkbox checked" : "checkbox"}></div>
+                <div className={checkboxClassName}></div>
                 <p>{props.text}</p>
             </div>
             <button onClick={onTodoDelete}>
@@ -19,5 +36,5 @@ export default function TodoItem(props) {
                 </svg>
             </button>
         </li>
-    )
+    );
 }

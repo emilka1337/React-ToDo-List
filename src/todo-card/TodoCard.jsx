@@ -44,7 +44,7 @@ export default function TodoCard(props) {
     return (
         <div className="todo-card" /*style={{background: props.color}}*/>
             <RemoveCard onClick={onCardRemove} />
-            <EditCardName onClick={onCardRenameButtonClicked} />
+            {!nameEditMode && <EditCardName onClick={onCardRenameButtonClicked} />}
             {nameEditMode ? (
                 <CardNameEditForm
                     currentCardName={props.name}

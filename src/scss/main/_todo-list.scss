@@ -3,22 +3,35 @@
     list-style: none;
     padding: 0;
 
+    @media screen and (min-width: 992px) {
+        &:hover {
+            .todo-list-item {
+                scale: 1.05;
+            }
+
+            .todo-list-item:not(.focused) {
+                filter: blur(2px);
+                scale: 1;
+            }
+        }
+    }
+
     .todo-list-item {
         display: flex;
         width: 100%;
         justify-content: space-between;
-        margin: 15px 0px;
+        padding: 7px 0px;
         cursor: pointer;
+        transition: 200ms;
 
         &.completed {
-
-            p{
+            p {
                 position: relative;
 
                 &::after {
                     width: 110%;
                 }
-            } 
+            }
         }
 
         .list-item-left {
@@ -46,9 +59,8 @@
                     }
                 }
             }
-
         }
-        
+
         p {
             font-weight: 500;
             margin-bottom: 0;
